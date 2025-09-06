@@ -41,6 +41,42 @@
                             </a>
                         </li>
                     }
+                    <li class="menu-title mt-2">
+                        <span>Theme</span>
+                    </li>
+                    <li>
+                        <label class="cursor-pointer label justify-start gap-2">
+                            <input type="radio" 
+                                   name="theme-radios" 
+                                   class="radio radio-sm" 
+                                   value="light"
+                                   [checked]="currentTheme === 'light'"
+                                   (change)="setTheme('light')">
+                            <span class="label-text">Light</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="cursor-pointer label justify-start gap-2">
+                            <input type="radio" 
+                                   name="theme-radios" 
+                                   class="radio radio-sm" 
+                                   value="dark"
+                                   [checked]="currentTheme === 'dark'"
+                                   (change)="setTheme('dark')">
+                            <span class="label-text">Dark</span>
+                        </label>
+                    </li>
+                    <li>
+                        <label class="cursor-pointer label justify-start gap-2">
+                            <input type="radio" 
+                                   name="theme-radios" 
+                                   class="radio radio-sm" 
+                                   value="auto"
+                                   [checked]="currentTheme === 'auto'"
+                                   (change)="setTheme('auto')">
+                            <span class="label-text">Auto</span>
+                        </label>
+                    </li>
                 </ul>
             </div>
         </div>
