@@ -1,4 +1,51 @@
+<!-- Top Navigation Card -->
+<div class="card w-full bg-base-100 shadow-sm rounded-none">
+    <div class="card-body p-4">
+        <div class="flex items-center justify-between">
+            <!-- Logo and Title -->
+            <div class="flex items-center gap-4">
+                <div class="avatar avatar-placeholder">
+                    <div class="bg-neutral text-neutral-content w-12 rounded-full">
+                        <span>SY</span>
+                    </div>
+                </div>
+                <h1 class="card-title text-2xl">SoundBoard</h1>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="tabs tabs-boxed tabs-lg">
+                @for (tab of tabs; track tab.route) {
+                    <a [routerLink]="tab.route" 
+                       routerLinkActive="tab-active" 
+                       class="tab">
+                        {{ tab.label }}
+                    </a>
+                }
+            </div>
+
+            <!-- Avatar Login -->
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="avatar avatar-placeholder">
+                        <div class="bg-neutral text-neutral-content rounded-full w-10">
+                            <span class="text-xs">MD</span>
+                        </div>
+                    </div>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    @for (item of userMenuItems; track item.route) {
+                        <li>
+                            <a [routerLink]="item.route" routerLinkActive="active">
+                                {{ item.label }}
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
 <router-outlet />
-
-
-<button class="btn btn-primary">Button</button>
