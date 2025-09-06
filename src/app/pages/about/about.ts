@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
+import { RangePipe } from '../../pipes/range-pipe';
 
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [RangePipe],
   templateUrl: './about.html',
   styleUrl: './about.css'
 })
-export class About {
-  range(n: number): number[] {
-    return Array.from({ length: n }, (_, i) => i);
-  }
-}
+export class About {}
