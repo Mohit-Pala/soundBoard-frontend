@@ -1,0 +1,35 @@
+<div class="modal modal-open" (click)="cancelUpload()">
+  <div class="modal-box" (click)="$event.stopPropagation()">
+    <button class="btn btn-sm btn-circle btn-error absolute right-2 top-2" (click)="cancelUpload()">X</button>
+    
+    <h3 class="font-bold text-lg">Upload New Sound</h3>
+    
+    <div class="py-4 flex flex-col items-center">
+      <div class="form-control w-full mb-4">
+        <label class="label">
+          <span class="label-text">Name</span>
+        </label>
+        <input type="text" placeholder="Sound name" class="input input-bordered w-full" />
+      </div>
+      
+      <div class="form-control w-full mb-4">
+        <label class="label">
+          <span class="label-text">Description</span>
+        </label>
+        <input type="text" placeholder="Sound description" class="input input-bordered w-full" />
+      </div>
+      
+      <div class="form-control w-full mb-4">
+        <label class="label">
+          <span class="label-text">Sound File (mp3/mp4)</span>
+        </label>
+        <input type="file" accept=".mp3,.mp4" class="file-input file-input-bordered w-full" />
+      </div>
+    </div>
+    
+    <div class="modal-action justify-center">
+      <button class="btn btn-soft btn-error w-24" (click)="cancelUpload()">Cancel</button>
+      <button class="btn btn-soft btn-primary w-24" (click)="confirmUpload()">Upload</button>
+    </div>
+  </div>
+</div>

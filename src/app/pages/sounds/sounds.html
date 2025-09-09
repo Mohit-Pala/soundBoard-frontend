@@ -2,8 +2,13 @@
   <div class="container mx-auto p-8">
     <div class="card bg-base-100 shadow-lg">
       <div class="card-body">
-        <h1 class="card-title text-3xl mb-6">Sound Library</h1>
-        <p class="text-lg mb-8">Annoy people here</p>
+        <div class="flex justify-between items-center mb-6">
+          <div>
+            <h1 class="card-title text-3xl">Sound Library</h1>
+            <p class="text-lg">Annoy people here</p>
+          </div>
+          <button class="btn btn-primary" (click)="openUploadModal()">Add New Sound</button>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div class="card bg-base-200 shadow-md">
@@ -42,4 +47,8 @@
       </div>
     </div>
   </div>
+
+  @if (showUploadModal) {
+    <app-upload-new-sound-dialog (closeModal)="closeUploadModal()"></app-upload-new-sound-dialog>
+  }
 </div>
