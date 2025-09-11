@@ -23,7 +23,8 @@ export class App implements OnInit {
   userMenuItems = [
     { label: 'Profile', route: '/profile' },
     { label: 'Settings', route: '/settings' },
-    { label: 'Login', route: '/login' }
+    { label: 'Login', route: '/login' },
+    { label: 'Register', route: '/register' }
   ]
 
   ngOnInit() {

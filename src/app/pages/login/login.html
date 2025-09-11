@@ -1,1 +1,74 @@
-<p>login works!</p>
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">Login to SoundBoard</h1>
+      <p class="py-6">Welcome back! Sign in to access your personalized sound collection and create amazing audio experiences.</p>
+    </div>
+    <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <form class="card-body" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input 
+            type="email" 
+            placeholder="email@example.com" 
+            class="input input-bordered" 
+            required 
+            [(ngModel)]="loginData.email"
+            name="email"
+            #email="ngModel"
+          />
+          <div *ngIf="email.invalid && email.touched" class="label">
+            <span class="label-text-alt text-error">Please enter a valid email</span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input 
+            type="password" 
+            placeholder="password" 
+            class="input input-bordered" 
+            required 
+            minlength="6"
+            [(ngModel)]="loginData.password"
+            name="password"
+            #password="ngModel"
+          />
+          <div *ngIf="password.invalid && password.touched" class="label">
+            <span class="label-text-alt text-error">Password must be at least 6 characters</span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label class="label cursor-pointer">
+            <span class="label-text">Remember me</span>
+            <input 
+              type="checkbox" 
+              class="checkbox checkbox-primary" 
+              [(ngModel)]="loginData.rememberMe"
+              name="rememberMe"
+            />
+          </label>
+        </div>
+        <div class="form-control mt-6">
+          <button 
+            class="btn btn-primary" 
+            type="submit"
+            [disabled]="!loginForm.form.valid"
+          >
+            Login
+          </button>
+        </div>
+        <div class="divider">OR</div>
+        <div class="text-center">
+          <p class="text-sm">
+            Don't have an account? 
+            <a routerLink="/register" class="link link-primary">Sign up here</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

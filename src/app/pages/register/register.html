@@ -1,0 +1,133 @@
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row">
+    <div class="text-center lg:text-left">
+      <h1 class="text-5xl font-bold">Join SoundBoard</h1>
+      <p class="py-6">Create your account and start building your ultimate sound collection. Share, discover, and enjoy audio like never before!</p>
+    </div>
+    <div class="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
+      <form class="card-body" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">First Name</span>
+          </label>
+          <input 
+            type="text" 
+            placeholder="John" 
+            class="input input-bordered" 
+            required 
+            [(ngModel)]="registerData.firstName"
+            name="firstName"
+            #firstName="ngModel"
+          />
+          <div *ngIf="firstName.invalid && firstName.touched" class="label">
+            <span class="label-text-alt text-error">First name is required</span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Last Name</span>
+          </label>
+          <input 
+            type="text" 
+            placeholder="Doe" 
+            class="input input-bordered" 
+            required 
+            [(ngModel)]="registerData.lastName"
+            name="lastName"
+            #lastName="ngModel"
+          />
+          <div *ngIf="lastName.invalid && lastName.touched" class="label">
+            <span class="label-text-alt text-error">Last name is required</span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input 
+            type="email" 
+            placeholder="email@example.com" 
+            class="input input-bordered" 
+            required 
+            [(ngModel)]="registerData.email"
+            name="email"
+            #email="ngModel"
+          />
+          <div *ngIf="email.invalid && email.touched" class="label">
+            <span class="label-text-alt text-error">Please enter a valid email</span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input 
+            type="password" 
+            placeholder="password" 
+            class="input input-bordered" 
+            required 
+            minlength="6"
+            [(ngModel)]="registerData.password"
+            name="password"
+            #password="ngModel"
+          />
+          <div *ngIf="password.invalid && password.touched" class="label">
+            <span class="label-text-alt text-error">Password must be at least 6 characters</span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Confirm Password</span>
+          </label>
+          <input 
+            type="password" 
+            placeholder="confirm password" 
+            class="input input-bordered" 
+            required 
+            [(ngModel)]="registerData.confirmPassword"
+            name="confirmPassword"
+            #confirmPassword="ngModel"
+          />
+          <div *ngIf="confirmPassword.invalid && confirmPassword.touched" class="label">
+            <span class="label-text-alt text-error">Please confirm your password</span>
+          </div>
+          <div *ngIf="confirmPassword.valid && !passwordsMatch() && confirmPassword.touched" class="label">
+            <span class="label-text-alt text-error">Passwords do not match</span>
+          </div>
+        </div>
+        <div class="form-control">
+          <label class="label cursor-pointer">
+            <span class="label-text">I agree to the Terms and Conditions</span>
+            <input 
+              type="checkbox" 
+              class="checkbox checkbox-primary" 
+              required
+              [(ngModel)]="registerData.agreeToTerms"
+              name="agreeToTerms"
+              #agreeToTerms="ngModel"
+            />
+          </label>
+          <div *ngIf="agreeToTerms.invalid && agreeToTerms.touched" class="label">
+            <span class="label-text-alt text-error">You must agree to the terms</span>
+          </div>
+        </div>
+        <div class="form-control mt-6">
+          <button 
+            class="btn btn-primary" 
+            type="submit"
+            [disabled]="!registerForm.form.valid || !passwordsMatch()"
+          >
+            Create Account
+          </button>
+        </div>
+        <div class="divider">OR</div>
+        <div class="text-center">
+          <p class="text-sm">
+            Already have an account? 
+            <a routerLink="/login" class="link link-primary">Sign in here</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

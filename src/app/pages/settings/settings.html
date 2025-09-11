@@ -1,1 +1,228 @@
-<p>settings works!</p>
+<div class="container mx-auto p-6 max-w-4xl">
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold mb-2">Settings</h1>
+    <p class="text-base-content/70">Manage your account preferences and application settings</p>
+  </div>
+
+  <form #settingsForm="ngForm" (ngSubmit)="onSubmit(settingsForm)">
+    <!-- Profile Settings -->
+    <div class="card bg-base-100 shadow-xl mb-6">
+      <div class="card-body">
+        <h2 class="card-title text-2xl mb-4">Profile Settings</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Display Name</span>
+            </label>
+            <input 
+              type="text" 
+              placeholder="Enter your display name" 
+              class="input input-bordered" 
+              required 
+              [(ngModel)]="settingsData.displayName"
+              name="displayName"
+              #displayName="ngModel"
+            />
+            <div *ngIf="displayName.invalid && displayName.touched" class="label">
+              <span class="label-text-alt text-error">Display name is required</span>
+            </div>
+          </div>
+          
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Email Address</span>
+            </label>
+            <input 
+              type="email" 
+              placeholder="Enter your email" 
+              class="input input-bordered" 
+              required 
+              [(ngModel)]="settingsData.email"
+              name="email"
+              #email="ngModel"
+            />
+            <div *ngIf="email.invalid && email.touched" class="label">
+              <span class="label-text-alt text-error">Please enter a valid email</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification Settings -->
+    <div class="card bg-base-100 shadow-xl mb-6">
+      <div class="card-body">
+        <h2 class="card-title text-2xl mb-4">Notifications</h2>
+        
+        <div class="space-y-4">
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <span class="label-text">Email Notifications</span>
+              <input 
+                type="checkbox" 
+                class="toggle toggle-primary" 
+                [(ngModel)]="settingsData.notifications.emailNotifications"
+                name="emailNotifications"
+              />
+            </label>
+            <div class="label">
+              <span class="label-text-alt">Receive updates and news via email</span>
+            </div>
+          </div>
+          
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <span class="label-text">Sound Notifications</span>
+              <input 
+                type="checkbox" 
+                class="toggle toggle-primary" 
+                [(ngModel)]="settingsData.notifications.soundNotifications"
+                name="soundNotifications"
+              />
+            </label>
+            <div class="label">
+              <span class="label-text-alt">Play notification sounds</span>
+            </div>
+          </div>
+          
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <span class="label-text">Push Notifications</span>
+              <input 
+                type="checkbox" 
+                class="toggle toggle-primary" 
+                [(ngModel)]="settingsData.notifications.pushNotifications"
+                name="pushNotifications"
+              />
+            </label>
+            <div class="label">
+              <span class="label-text-alt">Receive browser push notifications</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Privacy Settings -->
+    <div class="card bg-base-100 shadow-xl mb-6">
+      <div class="card-body">
+        <h2 class="card-title text-2xl mb-4">Privacy</h2>
+        
+        <div class="space-y-4">
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <span class="label-text">Public Profile</span>
+              <input 
+                type="checkbox" 
+                class="toggle toggle-primary" 
+                [(ngModel)]="settingsData.privacy.profileVisible"
+                name="profileVisible"
+              />
+            </label>
+            <div class="label">
+              <span class="label-text-alt">Make your profile visible to other users</span>
+            </div>
+          </div>
+          
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <span class="label-text">Public Sound Library</span>
+              <input 
+                type="checkbox" 
+                class="toggle toggle-primary" 
+                [(ngModel)]="settingsData.privacy.soundsPublic"
+                name="soundsPublic"
+              />
+            </label>
+            <div class="label">
+              <span class="label-text-alt">Allow others to discover your sounds</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Audio Settings -->
+    <div class="card bg-base-100 shadow-xl mb-6">
+      <div class="card-body">
+        <h2 class="card-title text-2xl mb-4">Audio Preferences</h2>
+        
+        <div class="space-y-4">
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Default Volume ({{ settingsData.audio.defaultVolume }}%)</span>
+            </label>
+            <input 
+              type="range" 
+              min="0" 
+              max="100" 
+              class="range range-primary" 
+              [(ngModel)]="settingsData.audio.defaultVolume"
+              name="defaultVolume"
+            />
+            <div class="w-full flex justify-between text-xs px-2">
+              <span>0%</span>
+              <span>25%</span>
+              <span>50%</span>
+              <span>75%</span>
+              <span>100%</span>
+            </div>
+          </div>
+          
+          <div class="form-control">
+            <label class="label">
+              <span class="label-text">Audio Quality</span>
+            </label>
+            <select 
+              class="select select-bordered w-full" 
+              [(ngModel)]="settingsData.audio.audioQuality"
+              name="audioQuality"
+            >
+              <option value="low">Low (Faster loading)</option>
+              <option value="medium">Medium (Balanced)</option>
+              <option value="high">High (Best quality)</option>
+            </select>
+          </div>
+          
+          <div class="form-control">
+            <label class="label cursor-pointer">
+              <span class="label-text">Auto-play sounds</span>
+              <input 
+                type="checkbox" 
+                class="toggle toggle-primary" 
+                [(ngModel)]="settingsData.audio.autoPlay"
+                name="autoPlay"
+              />
+            </label>
+            <div class="label">
+              <span class="label-text-alt">Automatically start playing when sounds are loaded</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="card bg-base-100 shadow-xl">
+      <div class="card-body">
+        <div class="card-actions justify-end">
+          <button 
+            type="button" 
+            class="btn btn-outline"
+            (click)="resetToDefaults()"
+          >
+            Reset to Defaults
+          </button>
+          <button 
+            type="submit" 
+            class="btn btn-primary"
+            [disabled]="!settingsForm.form.valid"
+          >
+            Save Settings
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
